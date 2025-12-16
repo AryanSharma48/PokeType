@@ -5,10 +5,11 @@ export default function Header(){
         <header>
             <div className="logo">
                 <img src="/src/images/logo.png" alt="logo" />
-                <span>TypeMaster</span>
+                <span>TheTypist</span>
             </div>
             <div className="nav">
-                <span>About</span>
+                <span>Settings</span>
+                <span className="profile">Profile</span>
             </div>
         </header>
     )

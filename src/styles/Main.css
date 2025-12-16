@@ -1,5 +1,5 @@
 main{
-    font-family:'geist';
+    font-family:'roboto mono';
     margin-top: 2rem;
     display: flex;
     justify-content: center;
@@ -26,8 +26,10 @@ main{
     border: none;
     resize: none;
     font-size: 1.4rem;
-    font-family: "geist";
+    font-family: 'roboto mono';
     text-align: center;
+    color: white;
+    background: transparent;
 }
 #text-input::placeholder{
     padding: 3px;
@@ -50,17 +52,19 @@ main{
     font-size: 2rem;
     padding: 10px 20px;
     margin-bottom: 2rem;
+    color : #444444;
 }    
 
 .stats{
     margin-top: 3rem;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
-    gap: 1rem;
-    font-weight: 600;
+    gap: 2rem;
+    /* font-weight: 600; */
     font-size: 1.2rem;
     letter-spacing: 0.05rem;
+    color: rgb(188, 187, 187);
 
 }
 
@@ -71,17 +75,18 @@ main{
 
 #restart-button button{
     border-radius: 8px;
-    font-family: "geist";
+    font-family: 'roboto mono';
     padding: 8px 20px;
     font-size: 1rem;
     border: none;
+    background-color: transparent;
+    color: #444444;
 }
 
 #restart-button button:hover{
-    background-color: black;
     color: white;
     cursor: pointer;
-    transform: scale(1.1);
+    /* transform: scale(1.1); */
     transition: 0.3s ease;
     border: none;
 }

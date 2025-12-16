@@ -1,9 +1,11 @@
 header{
+
     display: flex;
-    font-family: 'geist';
+    font-family: 'Roboto mono';
     align-items: center;
     justify-content: space-around;
-    padding: 10px 15px;
+    padding: 20px 15px;
+    color: #444444;
 
 }
 
@@ -12,6 +14,7 @@ header .logo{
     font-size: 2rem;
     gap: 8px;
     align-items: center;
+    color: white;
 }
 
 header span{
@@ -20,4 +23,8 @@ header span{
 
 header img{
     width: 40px;
+}
+
+.profile{
+    margin-left: 12px;
 }

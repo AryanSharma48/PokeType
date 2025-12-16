@@ -143,9 +143,13 @@ export default function Main() {
         ref={textareaRef}
       />
 
+      <div id="restart-button">
+        <button onClick={handleRestart}>Restart</button>
+      </div>
+
       <div className="stats">
         <div>
-          Time : <span id="time">{time}</span> s
+          Time : <span id="time">{time}</span>s
         </div>
         <div>
           WPM : <span id="wpm">{wpm}</span>
@@ -155,9 +159,7 @@ export default function Main() {
         </div>
       </div>
 
-      <div id="restart-button">
-        <button onClick={handleRestart}>Restart</button>
-      </div>
+      
     </main>
   );
 }
