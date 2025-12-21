@@ -4,13 +4,15 @@ export default function Header(){
     return(
         <header>
             <div className="logo">
-                <img src="/src/images/logo.png" alt="logo" />
+                <img src="src/images/logo.png" alt="logo" />
                 <span>TheTypist</span>
             </div>
-            <div className="nav">
+            
+            {/* <div className="nav">
                 <span>Settings</span>
                 <span className="profile">Profile</span>
-            </div>
+            </div> */}
+            
         </header>
     )
 }

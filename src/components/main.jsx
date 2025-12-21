@@ -3,16 +3,11 @@ import "../styles/main.css"
 
 export default function Main() {
   const list = [
-    "The quick brown fox jumps over the lazy dog",
-    "Life is a journey filled with unexpected bugs and beautiful fixes",
-    "Precision matters more than speed when accuracy defines success",
-    "Every developer once started with a single line of code and a dream",
-    "Silence can sometimes speak louder than the noisiest words",
-    "Creativity thrives best when curiosity is left untamed",
-    "In the rhythm of typing, every mistake becomes a beat of learning",
-    "The night was calm, the stars whispered secrets to the open sky",
-    "Focus on progress, not perfection, and speed will naturally follow",
-    "Sometimes the smallest steps lead to the biggest breakthroughs",
+    "The quick brown fox jumps over the lazy dog, life is a journey filled with unexpected bugs and beautiful fixes",
+    "Precision matters more than speed when accuracy defines success, every developer once started with a single line of code and a dream",
+    "Silence can sometimes speak louder than the noisiest words, creativity thrives best when curiosity is left untamed",
+    "In the rhythm of typing, every mistake becomes a beat of learning, The night was calm, the stars whispered secrets to the open sky",
+    "Focus on progress, not perfection, and speed will naturally follow, Sometimes the smallest steps lead to the biggest breakthroughs",
   ];
 
   const [targetText, setTargetText] = useState("");
@@ -87,20 +82,26 @@ export default function Main() {
       setWpm(wpmCalc);
       setAccuracy(accuracyCalc);
     }
-  }, [typed, startTime, targetText]);
+  }, [typed, time, targetText]);
 
   function handleChange(e) {
     const value = e.target.value;
 
     if (!startTime) {
       startTimer();
+      setTimeout(() => {
+        stopTimer()
+      }, 10000);
+    
     }
 
     setTyped(value);
 
-    if (value.length >= targetText.length) {
-      stopTimer();
-    }
+    //TO CHOOSE TO TYPE A NUMBER OF WORDS
+
+    // if (value.length >= targetText.length) {
+    //   stopTimer();
+    // } 
   }
 
   function handleRestart() {
