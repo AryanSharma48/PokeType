@@ -30,11 +30,11 @@ export default function Main() {
   }, []);
 
 
-  function timeSettings () {
-    setTimerSettings(
-      prev => prev = 30000
-    )
+  function timeSettings (settings){
+    setTimerSettings(prev => prev = settings * 1000 )
   }
+
+
 
   function loadText() {
     const random = list[Math.floor(Math.random() * list.length)];
@@ -147,6 +147,26 @@ export default function Main() {
     <main>
       <div className="heading">
         {/* <h1>Type the below sentence as fast as you can!</h1> */}
+      </div>
+
+      <div className="time-settings">
+        <span>Time :</span>
+        <button onClick={() => timeSettings(10)} 
+          style={{
+            color: timerSettings === 10000 ? "white" : "grey"
+          }} 
+        >10
+        </button>
+        <button onClick={() => timeSettings(30)}
+          style={{
+            color: timerSettings === 30000 ? "white" : "grey"
+          }} 
+        >30</button>
+        <button onClick={() => timeSettings(60)}
+          style={{
+            color: timerSettings === 60000 ? "white" : "grey"
+          }} 
+        >60</button>
       </div>
 
       <div id="typing-sentence">

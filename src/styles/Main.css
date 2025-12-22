@@ -8,8 +8,8 @@ main{
 }
 
 .time-settings{
-    color: white;
-    
+    color: grey;
+    margin-bottom: 2rem;
 }
 
 .time-settings button{
