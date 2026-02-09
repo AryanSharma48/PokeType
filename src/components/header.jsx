@@ -5,7 +5,7 @@ export default function Header(){
         <header>
             <div className="logo">
                 <img src="src/images/logo.png" alt="logo" />
-                <span>TheTypist</span>
+                <span>PokéType</span>
             </div>
             
             {/* <div className="nav">

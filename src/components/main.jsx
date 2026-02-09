@@ -1,8 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import "../styles/main.css"
 
-const dictionary = [
-  "the", "be", "to", "of", "and", "a", "in", "that", "have", "i", "it", "for", "not", "on", "with", "he", "as", "you", "do", "at", "this", "but", "his", "by", "from", "they", "we", "say", "her", "she", "or", "an", "will", "my", "one", "all", "would", "there", "their", "what", "so", "up", "out", "if", "about", "who", "get", "which", "go", "me", "when", "make", "can", "like", "time", "no", "just", "him", "know", "take", "people", "into", "year", "your", "good", "some", "could", "them", "see", "other", "than", "then", "now", "look", "only", "come", "its", "over", "think", "also", "back", "after", "use", "two", "how", "our", "work", "first", "well", "way", "even", "new", "want", "because", "any", "these", "give", "day", "most", "us"
+const sentences = [
+  "The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle. As with all matters of the heart, you'll know when you find it.",
+  "In the world of Pokémon, every trainer starts with a single companion and a dream to become a champion. It takes patience, strategy, and a bit of luck to master the art of battle.",
+  "Coding is like solving a complex puzzle where every piece of logic must fit perfectly. A single missing semicolon can bring down an entire system, teaching us the value of precision.",
+  "Success is not final, failure is not fatal: it is the courage to continue that counts. Whether you are typing a sentence or building a future, persistence is the key to excellence.",
+  "Move fast and break things. Unless you are breaking things, you are not moving fast enough. Innovation requires taking risks and learning from the mistakes that happen along the way."
 ];
 
 export default function Main() {
@@ -57,17 +61,13 @@ export default function Main() {
     handleRestart();
   }
 
-  function generateText(wordCount = 100) {
-    let result = [];
-    for (let i = 0; i < wordCount; i++) {
-        const randomIndex = Math.floor(Math.random() * dictionary.length);
-        result.push(dictionary[randomIndex]);
-    }
-    return result.join(" ");
+  function generateText() {
+    const randomIndex = Math.floor(Math.random() * sentences.length);
+    return sentences[randomIndex];
   }
 
   function loadText() {
-    const text = generateText(100);
+    const text = generateText();
     setTargetText(text.toLowerCase());
     setTyped("");
     typedRef.current = "";
@@ -225,7 +225,7 @@ export default function Main() {
       </div>
 
       <div className="time-settings">
-        <span>time:</span>
+        <span>Time:</span>
         <button
           onClick={() => timeSettings(10)}
           className={timerSettings === 10000 ? "active" : ""}
@@ -247,30 +247,68 @@ export default function Main() {
       </div>
 
       <div id="typing-sentence">
-        {targetText.split("").map((char, i) => {
-          const typedChar = typed[i];
-          let className = "";
-          if (typedChar == null) {
-            className = i === typed.length ? "current" : "";
-          } else if (typedChar === char) {
-            className = "correct";
-          } else {
-            className = "incorrect";
-          }
-          return (
-            <span key={i} className={className}>
-              {char}
-            </span>
-          );
-        })}
+        <div className="typing-wrapper">
+          <div 
+            className="typing-content"
+            ref={(el) => {
+              if (el && typed.length > 0) {
+                const currentSpan = el.querySelector('.current');
+                const cursor = el.querySelector('.mario-cursor');
+                if (currentSpan) {
+                  // Scrolling Logic
+                  const lineOffset = currentSpan.offsetTop - 35; // Adjust for wrapper padding
+                  const lineHeight = 2.2 * 16;
+                  if (lineOffset >= lineHeight) {
+                    el.style.transform = `translateY(-${lineOffset - lineHeight}px)`;
+                  } else {
+                    el.style.transform = `translateY(0)`;
+                  }
+
+                  // Cursor Positioning Logic
+                  if (cursor) {
+                    cursor.style.left = `${currentSpan.offsetLeft}px`;
+                    cursor.style.top = `${currentSpan.offsetTop}px`;
+                  }
+                }
+              } else if (el) {
+                el.style.transform = `translateY(0)`;
+                const cursor = el.querySelector('.mario-cursor');
+                const firstSpan = el.querySelector('span');
+                if (cursor && firstSpan) {
+                    cursor.style.left = `${firstSpan.offsetLeft}px`;
+                    cursor.style.top = `${firstSpan.offsetTop}px`;
+                }
+              }
+            }}
+          >
+            {/* The Floating Cursor */}
+            <div className="mario-cursor"></div>
+
+            {targetText.split("").map((char, i) => {
+              const typedChar = typed[i];
+              let className = "";
+              if (typedChar == null) {
+                className = i === typed.length ? "current" : "";
+              } else if (typedChar === char) {
+                className = "correct";
+              } else {
+                className = "incorrect";
+              }
+              return (
+                <span key={i} className={className}>
+                  {char}
+                </span>
+              );
+            })}
+          </div>
+        </div>
       </div>
 
       <div id="restart-button">
         <button onClick={handleRestart}>restart</button>
       </div>
 
-      {/* Mario Ground */}
-      <div className="ground"></div>
+
 
       {/* Results Modal */}
       {showResults && finalStats && (

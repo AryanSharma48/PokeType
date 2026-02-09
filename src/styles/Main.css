@@ -4,8 +4,9 @@ main {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    min-height: calc(100vh - 100px);
-    padding: 2rem;
+    height: 100vh;
+    /* Exactly viewport height */
+    padding: 1rem;
     max-width: 900px;
     margin: 0 auto;
     position: relative;
@@ -83,10 +84,10 @@ main {
     max-width: 750px;
     background: var(--white);
     border: 6px solid var(--black);
-    padding: 2.5rem;
+    padding: 0;
+    /* Padding moved to wrapper */
     margin-bottom: 3rem;
     border-radius: 4px;
-    /* Slight roundness for pixel look */
     box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.4);
     position: relative;
     font-size: 1.1rem;
@@ -94,37 +95,55 @@ main {
     color: var(--black);
     image-rendering: pixelated;
     z-index: 10;
+
+    /* Lock to 3 lines */
+    height: calc(2.2rem * 3 + 4.4rem);
+    /* 3 lines + padding */
+    overflow: hidden;
+}
+
+.typing-wrapper {
+    padding: 2.2rem 2.5rem;
+    /* Exactly 1 line of padding at top/bottom */
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.typing-content {
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: block;
 }
 
 #typing-sentence span {
-    transition: none;
+    transition: opacity 0.2s ease;
+    display: inline;
+    position: relative;
+    opacity: 0.5;
+    /* Increased visibility for untyped text */
 }
 
 #typing-sentence span.correct {
     color: var(--mario-grass);
+    opacity: 1;
 }
 
 #typing-sentence span.incorrect {
     color: var(--mario-brick);
     background: rgba(176, 48, 16, 0.1);
+    opacity: 1;
 }
 
-#typing-sentence span.current {
-    position: relative;
-    color: var(--black);
-}
 
-#typing-sentence span.current::before {
-    content: '';
+.mario-cursor {
     position: absolute;
     width: 3px;
     height: 1.4em;
     background: var(--black);
     animation: marioBlink 0.8s steps(2) infinite;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 5;
+    z-index: 100;
+    transition: left 0.1s ease-out, top 0.1s ease-out;
+    pointer-events: none;
 }
 
 @keyframes marioBlink {

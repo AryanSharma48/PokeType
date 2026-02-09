@@ -1,9 +1,8 @@
-# Type Master
+# PokéType 
 
-**Type Master** is a clean and minimal typing speed test built with **REACT**.  
+**PokéType ** is a Pokémon themed typing speed test website built with **REACT**.  
 Type the random sentence as fast and accurately as you can — and watch your **WPM**, **accuracy**, and **time** update live!
 
-🎯 **Live Website:** [aryansharma48.github.io/Type-Master](https://aryansharma48.github.io/Type-Master/)
 
 ---
 
@@ -20,8 +19,8 @@ Type the random sentence as fast and accurately as you can — and watch your **
 ## 🛠 Tech Stack
 
 💻 **HTML5** – Structure  
-🎨 **CSS3** – Styling & layout  
-⚙️ **JavaScript (Vanilla)** – Typing logic, stats & timer  
+🎨 **Tailwind** – Styling & layout  
+⚙️ **React with JavaScript** – Typing logic, stats & timer  
 
 ---
 

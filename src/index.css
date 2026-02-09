@@ -22,81 +22,24 @@
     box-sizing: border-box;
 }
 
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* Prevent site scrolling */
+}
+
 body {
     font-family: 'Press Start 2P', cursive;
-    background-color: var(--mario-sky) !important;
-    /* Force background color */
+    background: url('/src/images/background.webp') no-repeat center center fixed !important;
+    background-size: cover !important;
     color: var(--black);
     min-height: 100vh;
-    overflow-x: hidden;
     position: relative;
     image-rendering: pixelated;
 }
 
-/* --- BACKGROUND LAYERS --- */
-
-/* Layer 1: Sky & Clouds */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 100%;
-    background-image:
-        radial-gradient(ellipse at 10% 15%, var(--mario-cloud) 0%, var(--mario-cloud) 50%, transparent 50%),
-        radial-gradient(ellipse at 12% 18%, var(--mario-cloud) 0%, var(--mario-cloud) 50%, transparent 50%),
-        radial-gradient(ellipse at 30% 10%, var(--mario-cloud) 0%, var(--mario-cloud) 50%, transparent 50%),
-        radial-gradient(ellipse at 32% 13%, var(--mario-cloud) 0%, var(--mario-cloud) 50%, transparent 50%),
-        radial-gradient(ellipse at 60% 20%, var(--mario-cloud) 0%, var(--mario-cloud) 50%, transparent 50%),
-        radial-gradient(ellipse at 63% 23%, var(--mario-cloud) 0%, var(--mario-cloud) 50%, transparent 50%),
-        radial-gradient(ellipse at 85% 15%, var(--mario-cloud) 0%, var(--mario-cloud) 50%, transparent 50%),
-        radial-gradient(ellipse at 87% 18%, var(--mario-cloud) 0%, var(--mario-cloud) 50%, transparent 50%);
-    background-size: 50% 100%;
-    z-index: -3;
-    animation: scrollClouds 120s linear infinite;
-    opacity: 0.8;
-}
-
-@keyframes scrollClouds {
-    from {
-        transform: translateX(0);
-    }
-
-    to {
-        transform: translateX(-50%);
-    }
-}
-
-/* Layer 2: Hills */
-body::after {
-    content: '';
-    position: fixed;
-    bottom: 60px;
-    left: 0;
-    width: 100%;
-    height: 200px;
-    background-image:
-        radial-gradient(circle at 20% 100%, var(--mario-hill) 0, var(--mario-hill) 150px, transparent 151px),
-        radial-gradient(circle at 50% 100%, var(--mario-hill) 0, var(--mario-hill) 100px, transparent 101px),
-        radial-gradient(circle at 80% 100%, var(--mario-hill) 0, var(--mario-hill) 180px, transparent 181px);
-    background-repeat: repeat-x;
-    background-size: 800px 200px;
-    z-index: -2;
-    opacity: 0.9;
-}
-
-/* Layer 3: Ground (Managed in Main.css or as a separate component) */
-.ground {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    background: var(--mario-ground);
-    border-top: 8px solid var(--mario-grass);
-    z-index: -1;
-    background-image:
-        linear-gradient(45deg, rgba(0, 0, 0, 0.1) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.1) 75%, transparent 75%, transparent);
-    background-size: 16px 16px;
-}
+/* --- BACKGROUND LAYERS REMOVED --- */
