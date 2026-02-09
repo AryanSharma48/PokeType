@@ -28,6 +28,7 @@ export default function Main() {
   const wpmHistoryRef = useRef([]);
 
   const typedRef = useRef("");
+  const inputRef = useRef(null);
 
   useEffect(() => {
     loadText();
@@ -41,8 +42,12 @@ export default function Main() {
   // Focus on click anywhere in main
   useEffect(() => {
     const handleClick = () => {
-      if (mainRef.current && !showResults) {
-        mainRef.current.focus();
+      if (!showResults) {
+        if (inputRef.current) {
+          inputRef.current.focus();
+        } else if (mainRef.current) {
+          mainRef.current.focus();
+        }
       }
     };
     document.addEventListener('click', handleClick);
@@ -216,33 +221,27 @@ export default function Main() {
     }
   }, [typed, time]);
 
-  function handleKeyDown(e) {
+  function handleInput(e) {
     if (showResults) return;
+    const value = e.target.value;
 
-    // Start timer on first keypress
-    if (!startTimeRef.current && e.key.length === 1) {
+    // Start timer on first char if not started
+    if (!startTimeRef.current && value.length > 0) {
       startTimer();
     }
 
-    // Handle backspace
-    if (e.key === "Backspace") {
-      e.preventDefault();
-      setTyped((prev) => prev.slice(0, -1));
-      return;
-    }
-
-    // Handle character input
-    if (e.key.length === 1) {
-      e.preventDefault();
-      if (typed.length < targetText.length) {
-        setTyped((prev) => prev + e.key);
-      }
+    // Capture the latest char if it's an addition
+    if (value.length <= targetText.length) {
+      setTyped(value);
     }
   }
 
   function handleRestart() {
     stopTimer();
     loadText();
+    if (inputRef.current) {
+      inputRef.current.value = "";
+    }
   }
 
   const remainingTime = Math.max(0, (timerSettings / 1000) - Math.round(time));
@@ -252,9 +251,27 @@ export default function Main() {
       <main
         ref={mainRef}
         tabIndex={0}
-        onKeyDown={handleKeyDown}
         style={{ outline: "none" }}
+        onClick={() => inputRef.current?.focus()}
       >
+        {/* Hidden Input for Mobile Keyboard */}
+        <input
+          ref={inputRef}
+          type="text"
+          style={{
+            position: "absolute",
+            opacity: 0,
+            pointerEvents: "none",
+            height: 0,
+            width: 0,
+          }}
+          value={typed}
+          onChange={handleInput}
+          autoCapitalize="none"
+          autoCorrect="off"
+          autoComplete="off"
+          spellCheck="false"
+        />
         {/* Timer Display at Top */}
         <div className="timer-display">
           {startTimeRef.current
@@ -293,9 +310,15 @@ export default function Main() {
                   const currentSpan = el.querySelector(".current");
                   const cursor = el.querySelector(".mario-cursor");
                   if (currentSpan) {
-                    // Scrolling Logic
-                    const lineOffset = currentSpan.offsetTop - 35; // Adjust for wrapper padding
-                    const lineHeight = 2.2 * 16;
+                    // Responsive Scrolling Logic
+                    const styles = window.getComputedStyle(el);
+                    const lineHeight = parseFloat(styles.lineHeight);
+                    const wrapper = el.parentElement;
+                    const wrapperPadding = parseFloat(
+                      window.getComputedStyle(wrapper).paddingTop
+                    );
+
+                    const lineOffset = currentSpan.offsetTop - wrapperPadding;
                     if (lineOffset >= lineHeight) {
                       el.style.transform = `translateY(-${
                         lineOffset - lineHeight

@@ -272,3 +272,111 @@ main {
     transform: translate(-2px, -2px);
     box-shadow: 8px 8px 0 var(--black);
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    main {
+        padding: 0.5rem;
+        transform: translateY(-20px);
+        /* Less offset on mobile */
+        height: auto;
+        min-height: calc(100vh - 80px);
+        /* Account for header */
+        margin-top: 80px;
+        justify-content: flex-start;
+        /* Push up when keyboard shows */
+    }
+
+    .timer-display {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .time-settings {
+        gap: 0.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .time-settings span {
+        font-size: 0.7rem;
+    }
+
+    .time-settings button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.6rem;
+        border-width: 3px;
+    }
+
+    #typing-sentence {
+        font-size: 0.9rem;
+        line-height: 1.8rem;
+        height: calc(1.8rem * 3 + 2.4rem);
+        /* 3 lines + reduced padding */
+        border-width: 4px;
+        margin-bottom: 1.5rem;
+    }
+
+    .typing-wrapper {
+        padding: 1.2rem 1.5rem;
+        /* Reduced padding */
+    }
+
+    #restart-button button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.8rem;
+        border-width: 3px;
+    }
+
+    .results-container {
+        padding: 1.5rem;
+        width: 95%;
+        border-width: 4px;
+    }
+
+    .results-header h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .results-main-stats {
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .main-stat-value {
+        font-size: 2rem;
+    }
+
+    .results-detailed-stats {
+        padding: 1rem 0;
+        margin-bottom: 1.5rem;
+    }
+
+    .detail-value {
+        font-size: 1rem;
+    }
+
+    .results-actions button {
+        padding: 1rem 1.5rem;
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 480px) {
+    header .logo {
+        font-size: 1rem;
+    }
+
+    header img {
+        width: 35px;
+    }
+
+    .time-settings {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .main-stat-value {
+        font-size: 1.5rem;
+    }
+}
