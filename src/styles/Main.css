@@ -1,324 +1,252 @@
 main {
-    font-family: 'Inter', sans-serif;
-    margin-top: 1rem;
+    font-family: 'Press Start 2P', cursive;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 0 1rem;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
+    min-height: calc(100vh - 100px);
+    padding: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+/* Timer Display */
+.timer-display {
+    font-size: 2rem;
+    color: var(--white);
+    margin-bottom: 2rem;
+    text-align: center;
+    text-shadow: 4px 4px 0 var(--black);
+    animation: bounceTimer 2s ease-in-out infinite;
+}
+
+@keyframes bounceTimer {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
 }
 
 /* Time Settings */
 .time-settings {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 3rem;
-    padding: 1rem 1.5rem;
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
-    border-radius: 16px;
-    box-shadow: var(--shadow-card);
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    z-index: 11;
 }
 
 .time-settings span {
-    color: var(--text-secondary);
-    font-weight: 600;
-    font-size: 0.95rem;
-    letter-spacing: 0.05em;
+    color: var(--white);
+    text-shadow: 2px 2px 0 var(--black);
+    font-size: 0.9rem;
 }
 
 .time-settings button {
-    padding: 0.6rem 1.5rem;
-    border: 2px solid transparent;
-    background: transparent;
-    color: var(--text-muted);
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 600;
-    font-size: 1rem;
-    border-radius: 10px;
+    padding: 0.6rem 1.2rem;
+    border: 4px solid var(--black);
+    background: var(--mario-ground);
+    color: var(--white);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-}
-
-.time-settings button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--primary-gradient);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: -1;
+    box-shadow: 4px 4px 0 var(--black);
+    transition: all 0.1s;
 }
 
 .time-settings button:hover {
-    transform: translateY(-2px);
-    border-color: var(--accent-purple);
+    background: var(--mario-brick);
+    transform: translate(-1px, -1px);
+    box-shadow: 6px 6px 0 var(--black);
 }
 
-.time-settings button[style*="white"] {
-    color: white;
-    background: var(--primary-gradient);
-    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+.time-settings button:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--black);
 }
 
-.time-settings button[style*="white"]::before {
-    opacity: 1;
+.time-settings button[style*="var(--red)"],
+.time-settings button.active {
+    background: var(--mario-grass);
 }
 
-/* Typing Sentence Container */
+/* White Prompt Box - Mario Style Refined */
 #typing-sentence {
-    width: 90%;
-    max-width: 900px;
-    text-align: left;
-    font-size: 2.2rem;
-    line-height: 1.6;
-    padding: 2.5rem;
-    margin-bottom: 2.5rem;
-    color: var(--text-muted);
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 500;
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    box-shadow: var(--shadow-glow);
-    position: relative;
-    overflow: hidden;
-}
-
-#typing-sentence::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 4px;
-    background: var(--primary-gradient);
-    opacity: 0.6;
+    max-width: 750px;
+    background: var(--white);
+    border: 6px solid var(--black);
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    border-radius: 4px;
+    /* Slight roundness for pixel look */
+    box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.4);
+    position: relative;
+    font-size: 1.1rem;
+    line-height: 2.2rem;
+    color: var(--black);
+    image-rendering: pixelated;
+    z-index: 10;
 }
 
 #typing-sentence span {
-    transition: all 0.15s ease;
+    transition: none;
 }
 
 #typing-sentence span.correct {
-    color: var(--correct);
-    text-shadow: 0 0 8px rgba(34, 197, 94, 0.3);
+    color: var(--mario-grass);
 }
 
 #typing-sentence span.incorrect {
-    color: var(--incorrect);
-    text-decoration: underline;
-    text-decoration-thickness: 3px;
-    text-underline-offset: 4px;
-    background: rgba(239, 68, 68, 0.1);
-    padding: 0 2px;
-    border-radius: 4px;
+    color: var(--mario-brick);
+    background: rgba(176, 48, 16, 0.1);
 }
 
-/* Text Input */
-#text-input {
-    width: 90%;
-    max-width: 900px;
-    padding: 1.5rem 2rem;
-    border: 2px solid var(--glass-border);
-    resize: none;
-    font-size: 1.5rem;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 500;
-    text-align: left;
-    color: var(--text-primary);
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    border-radius: 16px;
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow-card);
-    line-height: 1.6;
+#typing-sentence span.current {
+    position: relative;
+    color: var(--black);
 }
 
-#text-input::placeholder {
-    color: var(--text-muted);
-    font-size: 1.3rem;
-    font-style: italic;
+#typing-sentence span.current::before {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 1.4em;
+    background: var(--black);
+    animation: marioBlink 0.8s steps(2) infinite;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
 }
 
-#text-input:focus {
-    outline: none;
-    border-color: var(--accent-purple);
-    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1), var(--shadow-glow);
-    background: rgba(255, 255, 255, 0.08);
-}
+@keyframes marioBlink {
 
-#text-input:focus::placeholder {
-    color: transparent;
+    0%,
+    49% {
+        opacity: 1;
+    }
+
+    50%,
+    100% {
+        opacity: 0;
+    }
 }
 
 /* Restart Button */
-#restart-button {
-    margin-top: 2.5rem;
-}
-
 #restart-button button {
-    padding: 1rem 3rem;
-    font-family: 'Inter', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    border: none;
-    background: var(--primary-gradient);
-    color: white;
-    border-radius: 14px;
+    padding: 1rem 2.5rem;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+    border: 4px solid var(--black);
+    background: var(--mario-grass);
+    color: var(--white);
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
-    position: relative;
-    overflow: hidden;
-    letter-spacing: 0.05em;
-}
-
-#restart-button button::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
+    box-shadow: 6px 6px 0 var(--black);
+    text-transform: uppercase;
+    transition: all 0.1s;
 }
 
 #restart-button button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(102, 126, 234, 0.5);
-}
-
-#restart-button button:hover::before {
-    width: 300px;
-    height: 300px;
+    background: #008800;
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0 var(--black);
 }
 
 #restart-button button:active {
-    transform: translateY(-1px);
+    transform: translate(3px, 3px);
+    box-shadow: 3px 3px 0 var(--black);
 }
 
-/* Stats Container */
-.stats {
-    margin-top: 3rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1.5rem;
-    width: 90%;
-    max-width: 900px;
-}
-
-.stats>div {
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
-    border-radius: 16px;
-    padding: 1.5rem;
-    text-align: center;
-    box-shadow: var(--shadow-card);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.stats>div::before {
-    content: '';
-    position: absolute;
+/* Results Modal Overlay */
+.results-page {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 3px;
-    background: var(--primary-gradient);
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    /* Semi-transparent overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
 
-.stats>div:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-glow);
-    border-color: var(--accent-purple);
-}
-
-.stats>div:hover::before {
-    opacity: 1;
-}
-
-.stats>div {
-    color: var(--text-secondary);
-    font-weight: 600;
-    font-size: 0.95rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-}
-
-.stats span {
-    display: block;
-    margin-top: 0.75rem;
-    font-size: 2.5rem;
-    font-weight: 800;
-    font-family: 'JetBrains Mono', monospace;
-    background: var(--primary-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    line-height: 1;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    #typing-sentence {
-        font-size: 1.6rem;
-        padding: 1.5rem;
-    }
-
-    #text-input {
-        font-size: 1.2rem;
-        padding: 1rem 1.5rem;
-    }
-
-    .stats {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .time-settings {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-}
-
-@media (max-width: 480px) {
-    #typing-sentence {
-        font-size: 1.3rem;
-        padding: 1rem;
-    }
-
-    .stats {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Heading */
-.heading h1 {
-    margin-bottom: 2rem;
-    font-size: 2.5rem;
-    font-weight: 800;
-    background: var(--primary-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+.results-container {
+    max-width: 600px;
+    width: 90%;
+    background: var(--white);
+    border: 6px solid var(--black);
+    padding: 3rem;
+    box-shadow: 15px 15px 0 rgba(0, 0, 0, 0.5);
     text-align: center;
+}
+
+.results-header h1 {
+    font-size: 2rem;
+    color: var(--mario-grass);
+    margin-bottom: 2rem;
+    text-shadow: 3px 3px 0 var(--black);
+}
+
+.results-main-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+.main-stat-label {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: var(--black);
+}
+
+.main-stat-value {
+    font-size: 3rem;
+    color: var(--mario-brick);
+}
+
+.results-detailed-stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem 0;
+    border-top: 4px dashed var(--black);
+    border-bottom: 4px dashed var(--black);
+    margin-bottom: 2.5rem;
+}
+
+.detail-label {
+    font-size: 0.6rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.detail-value {
+    font-size: 1.2rem;
+    color: var(--mario-hill);
+}
+
+.results-actions button {
+    padding: 1.2rem 2.5rem;
+    font-size: 0.9em;
+    background: var(--mario-brick);
+    border: 4px solid var(--black);
+    color: var(--white);
+    box-shadow: 6px 6px 0 var(--black);
+    cursor: pointer;
+}
+
+.results-actions button:hover {
+    background: #802008;
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0 var(--black);
 }

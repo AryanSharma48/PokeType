@@ -1,89 +1,36 @@
 header {
     display: flex;
-    font-family: 'Inter', sans-serif;
     align-items: center;
     justify-content: center;
-    padding: 2rem 2rem 1rem;
-    margin-bottom: 3rem;
+    padding: 2rem;
     position: relative;
+    z-index: 20;
 }
 
 header .logo {
     display: flex;
-    font-size: 2.5rem;
-    gap: 12px;
+    gap: 15px;
     align-items: center;
-    color: var(--text-primary);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    position: relative;
-}
-
-header .logo::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: var(--primary-gradient);
-    border-radius: 2px;
-    opacity: 0.8;
+    color: var(--white);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 2rem;
+    text-shadow: 4px 4px 0 var(--black);
+    letter-spacing: 0.1em;
 }
 
 header .logo span {
-    background: var(--primary-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: gradientShift 3s ease infinite;
-}
-
-@keyframes gradientShift {
-
-    0%,
-    100% {
-        filter: hue-rotate(0deg);
-    }
-
-    50% {
-        filter: hue-rotate(10deg);
-    }
+    color: var(--white);
 }
 
 header img {
-    width: 48px;
-    height: 48px;
-    filter: drop-shadow(0 4px 12px rgba(102, 126, 234, 0.4));
-    transition: transform 0.3s ease;
+    width: 40px;
+    height: 40px;
+    image-rendering: pixelated;
+    filter: drop-shadow(4px 4px 0 var(--black));
 }
 
-header img:hover {
-    transform: rotate(5deg) scale(1.05);
-}
-
-.nav {
-    display: flex;
-    gap: 1.5rem;
-    font-weight: 500;
-    color: var(--text-secondary);
-}
-
-.nav span {
-    cursor: pointer;
-    transition: color 0.3s ease;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-}
-
-.nav span:hover {
-    color: var(--text-primary);
-    background: var(--glass-bg);
-}
-
-.profile {
-    background: var(--primary-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+@media (max-width: 768px) {
+    header .logo {
+        font-size: 1.2rem;
+    }
 }
