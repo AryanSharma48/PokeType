@@ -5,15 +5,43 @@ import pokemonTheme from '../audio/Pokemon Season 1 Music_ Pokemon, I Choose You
 export default function AudioToggle() {
     const [isPlaying, setIsPlaying] = useState(false);
     const audioRef = useRef(new Audio(pokemonTheme));
+    const hasAttemptedAutoPlay = useRef(false);
 
     useEffect(() => {
         const audio = audioRef.current;
         audio.loop = true;
         audio.volume = 0.4;
 
+        // Try auto-play
+        const attemptAutoPlay = async () => {
+            try {
+                await audio.play();
+                setIsPlaying(true);
+                hasAttemptedAutoPlay.current = true;
+            } catch (err) {
+                console.log("Auto-play blocked, waiting for user interaction");
+                // Auto-play blocked, will play on first click
+            }
+        };
+
+        attemptAutoPlay();
+
+        // Play on first user interaction if auto-play failed
+        const handleFirstClick = () => {
+            if (!hasAttemptedAutoPlay.current) {
+                audio.play().then(() => {
+                    setIsPlaying(true);
+                    hasAttemptedAutoPlay.current = true;
+                }).catch(err => console.error("Play failed:", err));
+            }
+        };
+
+        document.addEventListener('click', handleFirstClick, { once: true });
+
         return () => {
             audio.pause();
             audio.src = '';
+            document.removeEventListener('click', handleFirstClick);
         };
     }, []);
 

@@ -1,6 +1,7 @@
 import Header from "./components/header"
 import Main from "./components/main"
 import AudioToggle from "./components/AudioToggle"
+import PikachuGreeting from "./components/PikachuGreeting"
 
 export default function App(){
     return(
@@ -8,6 +9,7 @@ export default function App(){
             <AudioToggle />
             <Header />
             <Main />
+            <PikachuGreeting />
         </>
     )
 }

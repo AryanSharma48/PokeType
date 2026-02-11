@@ -1,0 +1,170 @@
+/* Pikachu Greeting Container */
+.pikachu-greeting {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+/* Pikachu Character */
+.pikachu-character {
+    position: relative;
+    animation: slideInFromLeft 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Exit animation when hiding */
+.pikachu-greeting.hiding .pikachu-character {
+    animation: slideOutToLeft 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.pikachu-character img {
+    width: 270px;
+    height: auto;
+    image-rendering: pixelated;
+    filter: drop-shadow(4px 4px 0 rgba(0, 0, 0, 0.3));
+    animation: gentleBounce 2s ease-in-out infinite;
+}
+
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-200px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutToLeft {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(-300px);
+        opacity: 0;
+    }
+}
+
+@keyframes gentleBounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* Greeting Textbox */
+.greeting-textbox {
+    position: absolute;
+    width: 220px;
+    bottom: 100px;
+    left: 190px;
+    animation: popIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Exit animation for textbox */
+.pikachu-greeting.hiding .greeting-textbox {
+    animation: popOut 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes popOut {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+.textbox-image {
+    width: 280px;
+    height: auto;
+    image-rendering: pixelated;
+    filter: drop-shadow(3px 3px 0 rgba(0, 0, 0, 0.3));
+}
+
+.greeting-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    line-height: 1.6;
+    color: var(--black);
+    margin: 0;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .pikachu-greeting {
+        bottom: 15px;
+        left: 15px;
+    }
+
+    .pikachu-character img {
+        width: 100px;
+    }
+
+    .greeting-textbox {
+        bottom: 90px;
+    }
+
+    .textbox-image {
+        width: 200px;
+    }
+
+    .greeting-text {
+        font-size: 0.5rem;
+        line-height: 1.5;
+    }
+}
+
+@media (max-width: 480px) {
+    .pikachu-greeting {
+        bottom: 10px;
+        left: 10px;
+    }
+
+    .pikachu-character img {
+        width: 80px;
+    }
+
+    .greeting-textbox {
+        bottom: 70px;
+    }
+
+    .textbox-image {
+        width: 160px;
+    }
+
+    .greeting-text {
+        font-size: 0.45rem;
+    }
+}
