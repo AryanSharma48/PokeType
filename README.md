@@ -36,10 +36,10 @@ Type the random sentence as fast and accurately as you can — and watch your **
 ## 💾 How to Clone & Run Locally
 
 ## Clone this repository
-git clone https://github.com/aryansharma48/The-Typist.git
+git clone https://github.com/aryansharma48/PokeType.git
 
 ## Move into the project folder
-cd The-Typist
+cd PokeType
 
 ## Open the app
  (You can double-click index.html or run with a local server like Live Server in VS Code)
