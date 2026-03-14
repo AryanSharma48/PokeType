@@ -1,6 +1,6 @@
 # PokéType 
 
-**PokéType ** is a Pokémon themed typing speed test website built with **REACT**.  
+**PokéType** is a Pokémon themed typing speed test website built with **REACT**.  
 Type the random sentence as fast and accurately as you can — and watch your **WPM**, **accuracy**, and **time** update live!
 
 
