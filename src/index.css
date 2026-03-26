@@ -34,7 +34,7 @@ body {
 
 body {
     font-family: 'Press Start 2P', cursive;
-    background: url('/src/images/background.webp') no-repeat center center fixed !important;
+    background: url('./images/background.webp') no-repeat center center fixed !important;
     background-size: cover !important;
     color: var(--black);
     min-height: 100vh;
