@@ -7,7 +7,7 @@ Type the random sentence as fast and accurately as you can — and watch your **
 ---
 
 ## Check it out live: 
-  *https://poketypist.vercel.app*
+  ### *https://poketypist.vercel.app*
 ---
 
 ## ✨ Features
