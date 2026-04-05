@@ -39,30 +39,24 @@ Project structure:
 
 ```
 ├── .gitignore
+├── README.md
 ├── components.json
-├── dist
-│   ├── assets
-│   │   ├── background-tYV2M7id.webp
-│   │   ├── index-BxyVU67n.css
-│   │   ├── index-CEoM6Rn0.js
-│   │   ├── pokeball-BVSrE8Xg.png
-│   │   └── Pokemon Season 1 Music_ Pokemon_ I Choose You!-DI6np0Lt.mp3
-│   └── index.html
 ├── eslint.config.js
 ├── index.html
 ├── jsconfig.json
 ├── package-lock.json
 ├── package.json
 ├── postcss.config.js
-├── README.md
 ├── src
 │   ├── App.jsx
+│   ├── audio
+│   │   └── Pokemon Season 1 Music_ Pokemon, I Choose You!.mp3
 │   ├── components
 │   │   ├── AudioToggle.jsx
 │   │   ├── ClickSpark.jsx
+│   │   ├── PikachuGreeting.jsx
 │   │   ├── header.jsx
-│   │   ├── main.jsx
-│   │   └── PikachuGreeting.jsx
+│   │   └── main.jsx
 │   ├── images
 │   │   ├── background.webp
 │   │   ├── logo.png
@@ -82,6 +76,11 @@ Project structure:
 ├── tailwind.config.js
 └── vite.config.js
 ```
+
+## License
+
+Add your license information here.
+
 ## Built By
 
 Built with ❤️ by @AryanSharma48
